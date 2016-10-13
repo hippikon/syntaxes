@@ -1,6 +1,6 @@
 package digital.places.streams;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -48,7 +48,10 @@ public class DataStreamTest {
 	public void filterReferencedTest() {
 		DataStream ds = new DataStream();
 		Collection<User> outputs = ds.filterReferenced(User.getAll());
+		Collection<User> procoutputs = ds.procFilterReferenced(User.getAll());
+		assertTrue(outputs.containsAll(procoutputs) && outputs.containsAll(outputs));
 		assertEquals(outputs.size(),(User.getAll().size() - 10));
+		
 		
 	}
 
